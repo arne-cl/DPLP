@@ -69,7 +69,7 @@ def evalparser(path='./examples', report=False,
         pred_rst = pm.sr_parse(doc, bcvocab)
         if draw:
             strtree = pred_rst.parse()
-            t = ParentedTree(strtree)
+            t = ParentedTree.fromstring(strtree)
             base64_pngstr = t._repr_png_()
             with open(fmerge.replace(".merge",".png.base64"), 'wb') as outfile:
                 outfile.write(base64_pngstr)
