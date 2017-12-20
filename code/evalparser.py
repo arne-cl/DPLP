@@ -3,6 +3,8 @@
 ## Date: 11-05-2014
 ## Time-stamp: <yangfeng 09/25/2015 16:32:42>
 
+from nltk import ParentedTree
+
 from model import ParsingModel
 from tree import RSTTree
 from docreader import DocReader
@@ -67,7 +69,13 @@ def evalparser(path='./examples', report=False,
         pred_rst = pm.sr_parse(doc, bcvocab)
         if draw:
             strtree = pred_rst.parse()
+            t = ParentedTree(strtree)
+            base64_pngstr = t._repr_png_()
+            with open(fmerge.replace(".merge",".png.base64"), 'wb') as outfile:
+                outfile.write(base64_pngstr)
+
             drawrst(strtree, fmerge.replace(".merge",".ps"))
+
         # Get brackets from parsing results
         pred_brackets = pred_rst.bracketing()
         fbrackets = fmerge.replace('.merge', '.brackets')
