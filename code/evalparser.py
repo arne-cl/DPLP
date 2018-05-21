@@ -9,6 +9,7 @@ from model import ParsingModel
 from tree import RSTTree
 from docreader import DocReader
 from evaluation import Metrics
+import codecs
 from os import listdir
 from os.path import join as joinpath
 from util import drawrst
@@ -75,6 +76,9 @@ def evalparser(path='./examples', report=False,
                 outfile.write(base64_pngstr)
 
             drawrst(strtree, fmerge.replace(".merge",".ps"))
+
+            with codecs.open(fmerge.replace(".merge",".parsetree"), 'w', 'utf-8') as parsetree_file:
+                parsetree_file.write(t.__repr__())
 
         # Get brackets from parsing results
         pred_brackets = pred_rst.bracketing()
