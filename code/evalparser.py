@@ -71,11 +71,6 @@ def evalparser(path='./examples', report=False,
         if draw:
             strtree = pred_rst.parse()
             t = ParentedTree.fromstring(strtree)
-            base64_pngstr = t._repr_png_()
-            with open(fmerge.replace(".merge",".png.base64"), 'wb') as outfile:
-                outfile.write(base64_pngstr)
-
-            drawrst(strtree, fmerge.replace(".merge",".ps"))
 
             with codecs.open(fmerge.replace(".merge",".parsetree"), 'w', 'utf-8') as parsetree_file:
                 parsetree_file.write(t.__repr__())
