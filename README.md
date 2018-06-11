@@ -35,6 +35,62 @@ All the following commands will be run in a batch fasion, which means every comm
 
 TODO
 
+## 4. Repository Structure
+
+```
+.
+├── code
+│   ├── buildtree.py # test() shows how to extract shift-reduce actions from a .dis file
+│   ├── data.py # test() shows how to build a 'vocab' and a 'matrix' file from training data
+│   ├── datastructure.py
+│   ├── docreader.py
+│   ├── evalparser.py
+│   ├── evaluation.py
+│   ├── featselection.py
+│   ├── feature.py
+│   ├── learn.py # only contains empty class 'Learn'
+│   ├── model.py
+│   ├── parser.py
+│   ├── readdoc.py
+│   ├── tree.py
+│   └── util.py
+├── convert.py
+├── corenlp.sh
+├── discoseg
+│   ├── buildedu.py
+│   ├── buildmodel.py
+│   ├── buildsample.py
+│   ├── buildvocab.py
+│   ├── main.py
+│   ├── model
+│   │   ├── classifier.py
+│   │   ├── datastruct.py
+│   │   ├── docreader.py
+│   │   ├── example.txt
+│   │   ├── feature.py
+│   │   ├── sample.py
+│   │   ├── util.py
+│   │   └── vocab.py
+│   └── pretrained
+│       ├── model.pickle.gz
+│       └── vocab.pickle.gz
+├── doc # 5 page description of this parser incl. some code layout description
+│   ├── ...
+├── main.py # contains out-commented code for training in __name__
+├── model
+│   └── parsing-model.pickle.gz # estimator LinearSVC from pre-0.18 version of sklearn
+├── preprocess
+│   └── xmlreader.py # reads XML from CoreNLP and writes CONLL format
+├── README.md
+├── resources # acc. to main.py, these are Brown clusters
+│   ├── bc3200.pickle.gz # dict (ca. 250000 entries), mapping from tokens to binary numbers, e.g. ('unsupportable', '10111101010111')
+│   └── bcreader.py  # read bc-3200.txt into 'vocab' dict, write it into 'bc3200.pickle.gz'
+├── rstparser.py
+├── segmenter.py
+├── tmp  # contains some example RST parses
+│   ├── ...
+```
+
 ## Reference ##
 
 Please read the following paper for more technical details
