@@ -42,6 +42,9 @@ TODO
 ├── code
 │   ├── buildtree.py # test() shows how to extract shift-reduce actions from a .dis file
 │   ├── data.py # test() shows how to build a 'vocab' and a 'matrix' file from training data
+        - Data.builddata() needs a .merge file in addition to a .dis file to create an RSTTree
+        - a .merge file is a .conll file (converted output from CoreNLP with added EDU column)
+        - to create .merge files, we would first need to train a discourse segmenter (or use an existing one)
 │   ├── datastructure.py
 │   ├── docreader.py
 │   ├── evalparser.py
@@ -54,14 +57,15 @@ TODO
 │   ├── readdoc.py
 │   ├── tree.py
 │   └── util.py
-├── convert.py
+├── convert.py # converts CoreNLP's XML output into .conll files
 ├── corenlp.sh
 ├── discoseg
 │   ├── buildedu.py
 │   ├── buildmodel.py
 │   ├── buildsample.py
 │   ├── buildvocab.py
-│   ├── main.py
+│   ├── main.py # calls methods in the other modules of that package to train / run discourse segmentation
+        - we need .merge files for discoseg training, so we'll have to extract EDUs from the corpus beforehand
 │   ├── model
 │   │   ├── classifier.py
 │   │   ├── datastruct.py
@@ -77,6 +81,8 @@ TODO
 ├── doc # 5 page description of this parser incl. some code layout description
 │   ├── ...
 ├── main.py # contains out-commented code for training in __name__
+    - createtrndata() can train/create a vocab.pickle.gz from training data (.dis + .merge)
+    - trainmodel() can train/create a parsing-model.pickle.gz from training data
 ├── model
 │   └── parsing-model.pickle.gz # estimator LinearSVC from pre-0.18 version of sklearn
 ├── preprocess
